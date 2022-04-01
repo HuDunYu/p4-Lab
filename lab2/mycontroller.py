@@ -120,8 +120,24 @@ def readTableRules(p4info_helper, sw):
             entry = entity.table_entry
             # TODO For extra credit, you can use the p4info_helper to translate
             #      the IDs in the entry to names
-            print(entry)
-            print('-----')
+            table_name = p4info_helper.get_tables_name(entry.table_id)
+            print('%s:' % table_name, end=' ')
+
+            for match in entry.match:
+                match_field_name = p4info_helper.get_match_field_name(table_name, match, field_id)
+                print('%s' % match_field_name, end=' ')
+                match_field_value = p4info_helper.get_match_field_value(match)
+                print(match_field_value, end=' ')
+
+            table_action = entry.action
+            action = table_action.action
+            action_name = p4info_helper.get_actions_name(action.action_id)
+            print(' -> %s' % action_name, end=' ')           
+
+            for param in action.parmas:
+                param_name = p4info_helper.get_action_param_name(action_name, param.param_id)
+                print('%s' % param_name, end=' ')
+                print ('%r' % param.value, end=' ')
 
 
 def printCounter(p4info_helper, sw, counter_name, index):
