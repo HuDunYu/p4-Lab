@@ -43,7 +43,7 @@ def writeSwtraceRules(p4info_helper, ingress_sw, swid):
         action_params={
             "swid": swid
         })
-    egress_sw.WriteTableEntry(table_entry)
+    ingress_sw.WriteTableEntry(table_entry)
     print("Installed ingress add_swtrace rule on %s" % ingress_sw.name)
 
 
