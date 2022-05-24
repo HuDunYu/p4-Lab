@@ -179,9 +179,7 @@ control MyIngress(inout headers hdr,
         if (hdr.ipv4.isValid()) {
             ipv4_lpm.apply();
             /* TODO: add your table to the control flow */
-            if(hdr.udp.isValid()){
-                udp_block.apply();
-            }
+             udp_block.apply();
         }
 
     }
